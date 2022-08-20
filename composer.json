@@ -1,0 +1,17 @@
+{
+    "name": "joaofds/crud",
+    "description": "Teste de conhecimentos Titan Software",
+    "type": "project",
+    "authors": [
+        {
+            "name": "João Ferreira",
+            "email": "jo4o.fds@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "App\\" : "App/"
+        }
+    }
+}
