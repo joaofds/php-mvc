@@ -20,7 +20,8 @@ class Produto extends Controller
      */
     public function index(): void
     {
-        $this->view('produto/all');
+        $produtos = ProdutoModel::all();
+        $this->view('produto/all', $produtos);
     }
 
     /**
@@ -53,7 +54,7 @@ class Produto extends Controller
         $produto = json_decode($post['produto']);
         if (!empty($produto->nome)) {
             // passo o produto para metodo estatico que faz o insert
-            $isInserted = ProdutoModel::createProduct($produto);
+            $isInserted = ProdutoModel::create($produto);
             if ($isInserted) {
                 echo json_encode('Sucesso, produto cadastrado com sucesso.');
             } else {

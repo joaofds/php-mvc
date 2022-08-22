@@ -18,16 +18,39 @@ use Exception;
 class Produto
 {
     /**
+     * Busca todos os produtos.
+     *
+     * @return array $produtos
+     */
+    public static function all(): array
+    {
+        // sql
+        $sql = "SELECT p.IDPROD, p.NOME, p.COR, pr.PRECO 
+                FROM produtos AS p
+                JOIN precos AS pr
+                ON p.IDPROD = pr.IDPROD
+                ORDER BY p.nome";
+
+        // prepara query
+        $query = Connect::getInstance()->query($sql);
+
+        // busca dados
+        $produtos = $query->fetchAll();
+
+        return $produtos;
+    }
+
+    /**
      * Salva novo produto no banco
      *
      * @param object $produto
      * @return bool
      */
-    public static function createProduct(object $produto): bool
+    public static function create(object $produto): bool
     {
         try {
             // sql
-            $sql = "INSERT INTO `produtos` (`nome`, `cor`) VALUES (?, ?)";
+            $sql = "INSERT INTO produtos (nome, cor) VALUES (?, ?)";
 
             // instancia PDO e prepara sql
             $insert = Connect::getInstance()->prepare($sql);
@@ -45,7 +68,7 @@ class Produto
                 // ultimo id inserido
                 $idProduto = Connect::getInstance()->lastInsertId();
 
-                $sql = "INSERT INTO `precos` (`IDPROD`, `PRECO`) VALUES (?, ?)";
+                $sql = "INSERT INTO precos (IDPROD, PRECO) VALUES (?, ?)";
                 $insert = Connect::getInstance()->prepare($sql);
                 $resul = $insert->execute(
                     [
@@ -71,7 +94,7 @@ class Produto
      */
     public function update($id): bool
     {
-        return true
+        return true;
     }
 
     /**
@@ -82,6 +105,6 @@ class Produto
      */
     public function delete($id): bool
     {
-        return true
+        return true;
     }
 }

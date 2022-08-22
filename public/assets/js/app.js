@@ -1,5 +1,3 @@
-const host = window.location.hostname;
-
 $(document).ready(function () {});
 
 // mascara para moeda

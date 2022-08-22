@@ -8,6 +8,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/font-awesome.min.css">
     <link rel="stylesheet" href="/assets/css/app.css">
   </head>
   <body>
@@ -44,6 +45,7 @@
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
     <script src="/assets/js/jquery.inputmask.bundle.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.min.js"></script>
     <script src="/assets/js/app.js"></script>
   </body>
 </html>
