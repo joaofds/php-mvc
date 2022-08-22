@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/app.css">
   </head>
   <body>
     <header>
@@ -22,13 +22,13 @@
         <div class="collapse navbar-collapse" id="appNavBar">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/home" id="dropdown01" 
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" 
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Produtos
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="/produto">Cadastrar</a>
-              <a class="dropdown-item" href="/produto/listar">Listar</a>
+              <a class="dropdown-item" href="/produto">Listar</a>
+              <a class="dropdown-item" href="/produto/create">Cadastrar</a>
             </div>
           </li>
         </ul>
@@ -36,12 +36,14 @@
       </nav>
     </header>
     
-    <?php require __DIR__ . '/../App/Core/bootstrap.php'; ?>
+    <div class="php-content">
+      <?php require __DIR__ . '/../App/Core/bootstrap.php'; ?>
+    </div>
     <!-- jQuery, Popper.js, Bootstrap JS -->
-    <script src="assets/js/jquery-3.3.1.slim.min.js"></script>
-    <script src="assets/js/popper.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jquery.inputmask.bundle.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+    <script src="/assets/js/popper.min.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.inputmask.bundle.min.js"></script>
+    <script src="/assets/js/app.js"></script>
   </body>
 </html>
