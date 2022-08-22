@@ -6,6 +6,15 @@
 
     <div class="row mt-5">
       <div class="col">
+        <div class="row">
+          <div class="col">
+            <div class="form-inline float-right">
+              <div class="form-group mx-2 my-2">
+                <input type="text" id="filter-names" class="form-control" placeholder="Filtrar" aria-describedby="helpId">
+              </div>
+            </div>
+          </div>
+        </div>
         <table class="table table-striped" id="produtos">
           <thead>
             <tr>

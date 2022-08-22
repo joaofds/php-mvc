@@ -1,3 +1,18 @@
+$(document).ready(function () {
+  // tabela
+  const tableProdutos = $("#produtos tr");
+  // input de filto da tabela
+  $("#filter-names").keyup(function () {
+    // valor de input
+    let input = $(this).val().toUpperCase();
+    // seleciona tr da tabela
+    tableProdutos.filter(function () {
+      // traz somente valores encontrados
+      $(this).toggle($(this).text().toUpperCase().indexOf(input) > -1);
+    });
+  });
+});
+
 // mascara para moeda
 $(".moeda").inputmask({
   alias: "numeric",
@@ -10,12 +25,14 @@ $(".moeda").inputmask({
 $("#form-produto").submit(function (event) {
   event.preventDefault();
 
+  // captura produto
   const produto = {
     nome: $("#nome").val(),
     preco: $("#preco").val(),
     cor: $("#cor").val(),
   };
 
+  // ajax
   if (!produto.nome == "") {
     $.ajax({
       url: "/produto/store",
