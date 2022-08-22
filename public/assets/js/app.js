@@ -1,5 +1,3 @@
-$(document).ready(function () {});
-
 // mascara para moeda
 $(".moeda").inputmask({
   alias: "numeric",
@@ -24,7 +22,10 @@ $("#form-produto").submit(function (event) {
       type: "POST",
       data: { produto: JSON.stringify(produto) },
       dataType: "json",
-    }).done((window.location.href = "/produto"));
+    }).done(
+      (alert("Produto cadastrado com sucesso."),
+      (window.location.href = "/produto"))
+    );
   } else {
     alert("Todos os campos são obrigatórios");
   }

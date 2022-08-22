@@ -20,6 +20,7 @@
           <div class="form-group">
             <label for="cor">Cor</label>
             <select class="form-control" name="cor" id="cor" required>
+            <option value="" selected>Selecione a cor...</option>
               <?php foreach ($data as $cor) { ?>
                 <option value="<?php echo $cor; ?>"><?php echo $cor; ?></option>
               <?php } ?>

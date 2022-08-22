@@ -21,6 +21,26 @@ class Produto extends Controller
     public function index(): void
     {
         $produtos = ProdutoModel::all();
+
+        // aplica descontos
+        foreach ($produtos as $key => $row) {
+            if ($row->COR == 'VERMELHO' || $row->COR == 'AZUL') {
+                $row->PRECO -= ($row->PRECO * 20 / 100);
+            }
+
+            if ($row->COR == 'AMARELO') {
+                $row->PRECO -= ($row->PRECO * 10 / 100);
+            }
+
+
+            if ($row->COR == 'VERMELHO' && $row->PRECO > 50.00) {
+                $row->PRECO -= ($row->PRECO * 5 / 100);
+            }
+
+            // formata para moeda
+            $row->PRECO = number_format($row->PRECO, 2, ',', '.');
+        }
+
         $this->view('produto/all', $produtos);
     }
 
