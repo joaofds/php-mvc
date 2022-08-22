@@ -55,4 +55,9 @@ class Connect
 
         return self::$instance;
     }
+
+    public function lastInsertId()
+    {
+        return self::$instance->lastInsertId();
+    }
 }
