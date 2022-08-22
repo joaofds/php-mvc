@@ -1,6 +1,7 @@
+// tabela
+const tableProdutos = $("#produtos tr");
+
 $(document).ready(function () {
-  // tabela
-  const tableProdutos = $("#produtos tr");
   // input de filto da tabela
   $("#filter-names").keyup(function () {
     // valor de input
@@ -45,5 +46,55 @@ $("#form-produto").submit(function (event) {
     );
   } else {
     alert("Todos os campos são obrigatórios");
+  }
+});
+
+$("#edit-produto").submit(function (e) {
+  e.preventDefault();
+
+  // captura produto
+  const produto = {
+    id: window.location.pathname.split("/").pop(),
+    nome: $("#produto").val(),
+    preco: $("#preco").val(),
+  };
+
+  // ajax
+  if (!produto.nome == "") {
+    $.ajax({
+      url: "/produto/update",
+      type: "POST",
+      data: { produto: JSON.stringify(produto) },
+      dataType: "json",
+    }).done(
+      (alert("Produto atualizado com sucesso."),
+      (window.location.href = "/produto"))
+    );
+  } else {
+    alert("Todos os campos são obrigatórios");
+  }
+});
+
+// edição de produto
+$("#produtos tr a").click(function () {
+  let linkText = $(this).text();
+  let id = $(this).closest("tr").attr("data");
+
+  // editando produto
+  if (linkText == "Editar") {
+    location.replace(`produto/edit/${id}`);
+  }
+
+  // deletando produto
+  if (linkText == "Deletar") {
+    $.ajax({
+      url: "/produto/delete",
+      type: "POST",
+      data: { id: id },
+      dataType: "json",
+    }).done(
+      (alert("Produto deletado com sucesso."),
+      (window.location.href = "/produto"))
+    );
   }
 });

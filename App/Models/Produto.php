@@ -18,6 +18,29 @@ use Exception;
 class Produto
 {
     /**
+     * Busca produto pelo id.
+     *
+     * @param int $id
+     * @return object
+     */
+    public static function find($id): object
+    {
+        $sql = "SELECT p.IDPROD, p.NOME, pr.PRECO 
+        FROM produtos AS p
+        JOIN precos AS pr
+        ON p.IDPROD = pr.IDPROD
+        WHERE p.IDPROD = ? LIMIT 1";
+
+        // prepara query
+        $select = Connect::getInstance()->prepare($sql);
+
+        // busca dados
+        $select->execute([$id]);
+        $produto = $select->fetch();
+
+        return $produto;
+    }
+    /**
      * Busca todos os produtos.
      *
      * @return array $produtos
@@ -92,9 +115,31 @@ class Produto
      * @param int $id
      * @return bool
      */
-    public function update($id): bool
+    public static function update($produto): bool
     {
-        return true;
+        // id
+        $id = $produto->id;
+
+        // sql
+        $sql = "UPDATE produtos SET NOME = ? WHERE IDPROD = ?";
+
+        // prepara sql
+        $update = Connect::getInstance()->prepare($sql);
+
+        // atualiza
+        $isInserted = $update->execute([mb_strtoupper($produto->nome), $id]);
+        if ($isInserted) {
+            // sql
+            $sql = "UPDATE precos SET PRECO = ? WHERE IDPROD = ?";
+
+            // prepara sql
+            $update = Connect::getInstance()->prepare($sql);
+
+            // atualiza
+            $result = $update->execute([$produto->preco, $id]);
+            return $result;
+        }
+        return false;
     }
 
     /**
@@ -103,8 +148,13 @@ class Produto
      * @param int $id
      * @return bool
      */
-    public function delete($id): bool
+    public static function delete($id): bool
     {
-        return true;
+        $sql = "DELETE FROM produtos WHERE IDPROD = ?";
+
+        $delete = Connect::getInstance()->prepare($sql);
+        $result = $delete->execute([$id]);
+
+        return $result;
     }
 }

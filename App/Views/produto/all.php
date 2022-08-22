@@ -9,13 +9,13 @@
         <div class="row">
           <div class="col">
             <div class="form-inline float-right">
-              <div class="form-group mx-2 my-2">
+              <div class="form-group my-2">
                 <input type="text" id="filter-names" class="form-control" placeholder="Filtrar" aria-describedby="helpId">
               </div>
             </div>
           </div>
         </div>
-        <table class="table table-striped" id="produtos">
+        <table class="table table-striped my-2" id="produtos">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -27,7 +27,7 @@
           </thead>
           <tbody>
           <?php foreach ($data as $key => $value) { ?>
-            <tr>
+            <tr data="<?php echo $data[$key]->IDPROD ?>">
               <th scope="row"><?php echo $key + 1?></th>
               <td><?php echo $data[$key]->NOME ?></td>
               <td>R$: <?php echo $data[$key]->PRECO ?></td>
@@ -35,7 +35,7 @@
               <td style="width: 64px;">
                 <div class="btn-group">
                   <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                  <div class="dropdown-menu">
+                  <div class="dropdown-menu" id="actions">
                     <a class="dropdown-item" href="#">Editar</a>
                     <a class="dropdown-item" href="#">Deletar</a>
                   </div>

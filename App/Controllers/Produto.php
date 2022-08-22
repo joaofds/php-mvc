@@ -90,7 +90,8 @@ class Produto extends Controller
      */
     public function edit($id): void
     {
-        # code...
+        $produto = ProdutoModel::find($id);
+        $this->view('produto/edit', $produto);
     }
 
     /**
@@ -100,7 +101,35 @@ class Produto extends Controller
      */
     public function update(): void
     {
-        # code...
+        // filtra os campos recebidos.
+        $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+
+        // verifica se existem campos vazios, se sim mata.
+        if (in_array("", $post)) {
+            die('Todos os campos são obrigatórios');
+        };
+
+        // parse da request para obj por que eu quero.
+        $produto = json_decode($post['produto']);
+
+        $result = ProdutoModel::update($produto);
+        if ($result) {
+            echo json_encode('Produto atualizado com sucesso');
+        } else {
+            echo json_encode('Erro ao cadastrar produto.');
+        }
+    }
+
+        /**
+     * Rotina de deleção de produto
+     *
+     * @return void
+     */
+    public function delete(): void
+    {
+        $post = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $id = intval($post['id']);
+        ProdutoModel::delete($id);
     }
 
     /**
