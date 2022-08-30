@@ -5,7 +5,7 @@ USE `crud_produtos`;
 -- -------------------------------------------------------------
 
 -- CRIA TABELA "produtos" -------------------------------------
-CREATE TABLE `produtos`( 
+CREATE TABLE IF NOT EXISTS `produtos`( 
 	`IDPROD` Int(11) NOT NULL AUTO_INCREMENT,
 	`NOME` VarChar(255) NULL DEFAULT NULL,
 	`COR` Enum( 'AMARELO', 'AZUL', 'VERMELHO' ) NULL DEFAULT NULL,
